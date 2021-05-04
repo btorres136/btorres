@@ -1,0 +1,41 @@
+web/HELP.md
+web/.gradle
+web/build/
+!web/gradle/wrapper/gradle-wrapper.jar
+!web/**/src/main/**/build/
+!web/**/src/test/**/build/
+
+### STS ###
+web/.apt_generated
+web/.classpath
+web/.factorypath
+web/.project
+web/.settings
+web/.springBeans
+web/.sts4-cache
+web/bin/
+!web/**/src/main/**/bin/
+!web/**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+web/.idea
+web/*.iws
+web/*.iml
+web/*.ipr
+web/out/
+!web/**/src/main/**/out/
+!web/**/src/test/**/out/
+
+### NetBeans ###
+/web/nbproject/private/
+/web/nbbuild/
+/web/dist/
+/web/nbdist/
+/web/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+frontend/src/CSS
+frontend/node_modules
+frontend/target
