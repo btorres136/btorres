@@ -16,14 +16,12 @@ jobs:
     - name: Build Project
       run: ./web/gradlew build
     - name: Copy files to Server
-      env:
+      uses: appleboy/scp-action@master
+      with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SHH_USER }}
         port: ${{ secrets.SHH_PORT }}
         key: ${{ secrets.SHH_KEY }}
-        source: "web/build/libs/*.jar"
-        target: "~/docker/btorres.dev"
-      run:
-        echo key > ${key}
-        scp ${source} -i ./key ${username}@${host}:${target} 
+        source: "web"
+        target: "~/docker/btorres.dev" 
   
