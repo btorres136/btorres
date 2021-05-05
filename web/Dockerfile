@@ -1,6 +1,5 @@
 FROM openjdk:11-jdk
 RUN groupadd spring && useradd spring -g spring
 USER spring:spring
-ARG JAR_FILE=web/target/*.jar
-COPY ${JAR_FILE} app.jar
+COPY ./web/build/libs/\*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
