@@ -25,7 +25,7 @@ jobs:
         username: ${{ secrets.SHH_USER }}
         port: ${{ secrets.SHH_PORT }}
         key: ${{ secrets.SHH_KEY }}
-        source: "web/build/libs/*.jar,web/Dockerfile"
+        source: "web/build/libs/web-0.0.1-SNAPSHOT.jar,web/Dockerfile"
         target: "~/docker/btorres.dev/"
         strip_components: 1
     - name: Build the Docker image
