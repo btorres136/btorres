@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: Grant execute permission for gradlew
-      run: ls
+      run: chmod +x ./web/gradlew
     - name: Build Project
       run: ./web/gradlew build
-    - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file web/Dockerfile --build-arg JAR_FILE=build/libs/\*.jar -t btorres.dev
