@@ -22,6 +22,17 @@ jobs:
         username: ${{ secrets.SHH_USER }}
         port: ${{ secrets.SHH_PORT }}
         key: ${{ secrets.SHH_KEY }}
-        source: "web"
-        target: "~/docker/btorres.dev" 
-  
+        source: "web/build/libs/*.jar,web/Dockerfile"
+        target: "~/docker/btorres.dev"
+    - name: Build Image on Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SHH_USER }}
+        port: ${{ secrets.SHH_PORT }}
+        key: ${{ secrets.SHH_KEY }}
+        script: |
+          docker stop btorres.dev
+          docker rm btorres.dev
+          docker build . --file Dockerfile --build-arg JAR_FILE=build/libs/\*.jar -t btorres.dev
+          docker run -d -p 8080:8080 --name btorres.dev btorres.dev
