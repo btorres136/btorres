@@ -18,5 +18,17 @@ jobs:
       run: chmod +x ./web/gradlew
     - name: Build Project
       run: ./web/gradlew build
+    - name: SCP Files
+      uses: appleboy/scp-action@v0.0.1
+      env:
+        HOST: ${{ secrets.SHH_HOST }}
+        USERNAME: ${{ secrets.SSH_USER }}
+        PORT: ${{ secrets.SSH_PORT }}
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        source: 'web/build/libs/\*.jar web/Dockerfile'
+        target: '~/docker/btorres.dev/'
+       
     - name: Build the Docker image
       run: docker build . --file web/Dockerfile --build-arg JAR_FILE=web/build/libs/\*.jar -t btorres.dev
+  
