@@ -19,4 +19,4 @@ jobs:
     - name: Build Project
       run: ./web/gradlew build
     - name: Build the Docker image
-      run: docker build . --file web/Dockerfile --build-arg JAR_FILE=build/libs/\*.jar -t btorres.dev
+      run: docker build . --file web/Dockerfile --build-arg JAR_FILE=web/build/libs/\*.jar -t btorres.dev
