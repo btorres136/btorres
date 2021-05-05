@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-    - run: docker build . --file web/Dockerfile --build-arg JAR_FILE=build/libs/\*.jar -t btorres.dev
+      run: docker build . --file web/Dockerfile --build-arg JAR_FILE=build/libs/\*.jar -t btorres.dev
