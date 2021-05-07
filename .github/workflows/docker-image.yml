@@ -33,6 +33,7 @@ jobs:
         key: ${{ secrets.SHH_KEY }}
         script: |
           docker stop btorres.dev
+          ${{ secrets.USER_PASSWORD }}
           docker rm btorres.dev
           docker build . --file Dockerfile --build-arg JAR_FILE=build/libs/\*.jar -t btorres.dev
           docker run -d -p 8080:8080 --name btorres.dev btorres.dev
