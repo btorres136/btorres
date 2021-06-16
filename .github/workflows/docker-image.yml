@@ -15,25 +15,3 @@ jobs:
       run: chmod +x ./web/gradlew
     - name: Build Project
       run: cd web && ./gradlew build
-    - name: Copy files to Server
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SHH_USER }}
-        port: ${{ secrets.SHH_PORT }}
-        key: ${{ secrets.SHH_KEY }}
-        source: "web/build/libs/*.jar,web/Dockerfile"
-        target: "~/docker/btorres.dev"
-    - name: Build Image on Server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SHH_USER }}
-        port: ${{ secrets.SHH_PORT }}
-        key: ${{ secrets.SHH_KEY }}
-        script: |
-          sudo docker stop btorres.dev
-          ${{ secrets.USER_PASSWORD }}
-          sudo docker rm btorres.dev
-          sudo docker build . --file Dockerfile --build-arg JAR_FILE=build/libs/\*.jar -t btorres.dev
-          sudo docker run -d -p 8080:8080 --name btorres.dev btorres.dev
